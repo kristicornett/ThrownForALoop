@@ -39,57 +39,63 @@ List<Product> products = new List<Product>()
     new Product()
     {
         Name = "Football",
-        Price = 14,
+        Price = 14.00M,
         Sold = false,
         InStock = true,
         //why does new have to go in front of DateTime when it's a property on an instance?
         StockDate = new DateTime(2022, 10, 20),
-        ManufactureYear = 2010
+        ManufactureYear = 2010,
+        Condition = 4.2
     },
     new Product()
     {
         Name = "Hockey Stick",
-        Price = 12,
+        Price = 12.45M,
         Sold = false,
         InStock = true,
         StockDate = new DateTime(2023, 08, 02),
-        ManufactureYear = 2015
+        ManufactureYear = 2015,
+        Condition = 1
     },
     new Product()
     {
         Name = "Frisbee",
-        Price = 8,
+        Price = 8.45M,
         Sold = true,
         InStock = false,
         StockDate = new DateTime(2021, 11, 15),
-        ManufactureYear = 2000
+        ManufactureYear = 2000,
+        Condition = 3.7
     },
     new Product()
     {
         Name = "Baseball bat",
-        Price = 32,
+        Price = 32.99M,
         Sold = false,
         InStock = false,
         StockDate = new DateTime(2023, 09, 24),
-        ManufactureYear = 1999
+        ManufactureYear = 1999,
+        Condition = 4.1
     },
     new Product()
     {
         Name = "Soccer ball",
-        Price = 25,
+        Price = 25.98M,
         Sold = false,
         InStock = true,
         StockDate = new DateTime(2023, 10, 1),
-        ManufactureYear = 2023
+        ManufactureYear = 2023,
+        Condition = 4.9
     },
     new Product()
     {
         Name = "Cleats",
-        Price = 66,
+        Price = 66.75M,
         Sold = false,
         InStock = true,
         StockDate = new DateTime(2023, 10, 10),
-        ManufactureYear = 2023
+        ManufactureYear = 2023,
+        Condition = 5
     }
 };
 
@@ -99,6 +105,15 @@ for (int i = 0; i< products.Count; i++)
 {
 Console.WriteLine($"{i + 1}. {products[i].Name}");
 }
+decimal totalValue = 0.0M;
+foreach (Product product in products)
+{
+    if (!product.Sold)
+    {
+        totalValue += product.Price;
+    }
+}
+Console.WriteLine($"Total inventory value: {totalValue}");
 Console.WriteLine("Please enter a product number: ");
 int response = int.Parse(Console.ReadLine().Trim());
 while (response > products.Count || response < 1)
@@ -112,4 +127,4 @@ TimeSpan timeInStock = now - chosenProduct.StockDate;
 Console.WriteLine(@$"You chose: 
 {chosenProduct.Name}, which costs {chosenProduct.Price} dollars.
 It is {now.Year - chosenProduct.ManufactureYear} years old. 
-It {(chosenProduct.Sold ? "is not available." : $"has been in stock for {timeInStock.Days} days.")}");
+It {(chosenProduct.Sold ? "is not available." : $"has been in stock for {timeInStock.Days} days.")} It's condition is: {chosenProduct.Condition} out of 5");
