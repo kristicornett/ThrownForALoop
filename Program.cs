@@ -27,31 +27,69 @@ Your one-stop shop for used sporting equipment.";
 
 // while (response > 5 || response < 1)
 // {
-//     Console.WriteLine("Choose a number between 1 and 5!");
-//     response = int.Parse(Console.ReadLine().Trim());
+// Console.WriteLine("Choose a number between 1 and 5!");
+// response = int.Parse(Console.ReadLine().Trim());
 // }
 // Console.WriteLine($"You chose: {response}.");
 
-List<string> products = new List<string>()
+List<Product> products = new List<Product>()
 {
-    "Football",
-    "Hockey Stick",
-    "Boomerang",
-    "Frisbee",
-    "Golf Putter"
+    new Product()
+    {
+        Name = "Football",
+        Price = 14,
+        Sold = false,
+        InStock = true
+    },
+    new Product()
+    {
+        Name = "Hockey Stick",
+        Price = 12,
+        Sold = false,
+        InStock = true
+    },
+    new Product()
+    {
+        Name = "Frisbee",
+        Price = 8,
+        Sold = true,
+        InStock = false
+    },
+    new Product()
+    {
+        Name = "Baseball bat",
+        Price = 32,
+        Sold = false,
+        InStock = false
+    },
+    new Product()
+    {
+        Name = "Soccer ball",
+        Price = 25,
+        Sold = false,
+        InStock = true
+    },
+    new Product()
+    {
+        Name = "Cleats",
+        Price = 66,
+        Sold = false,
+        InStock = true
+    }
 };
 
 Console.WriteLine("Products:");
 
 for (int i = 0; i< products.Count; i++)
 {
-    Console.WriteLine($"{i + 1}. {products[i]}");
+Console.WriteLine($"{i + 1}. {products[i].Name}");
 }
 Console.WriteLine("Please enter a product number: ");
 int response = int.Parse(Console.ReadLine().Trim());
 while (response > products.Count || response < 1)
 {
-    Console.WriteLine("Choose a number between 1 and 5!");
-    response = int.Parse(Console.ReadLine().Trim());
+Console.WriteLine("Choose a number between 1 and 5!");
+response = int.Parse(Console.ReadLine().Trim());
 }
-Console.WriteLine($"You chose: {products[response - 1]}");
+Product chosenProduct = products[response -1];
+Console.WriteLine($"You chose: {chosenProduct.Name}, which costs {chosenProduct.Price}. Product stock: {chosenProduct.InStock}");
