@@ -32,6 +32,8 @@ Your one-stop shop for used sporting equipment.";
 // }
 // Console.WriteLine($"You chose: {response}.");
 
+
+
 List<Product> products = new List<Product>()
 {
     new Product()
@@ -39,42 +41,55 @@ List<Product> products = new List<Product>()
         Name = "Football",
         Price = 14,
         Sold = false,
-        InStock = true
+        InStock = true,
+        //why does new have to go in front of DateTime when it's a property on an instance?
+        StockDate = new DateTime(2022, 10, 20),
+        ManufactureYear = 2010
     },
     new Product()
     {
         Name = "Hockey Stick",
         Price = 12,
         Sold = false,
-        InStock = true
+        InStock = true,
+        StockDate = new DateTime(2023, 08, 02),
+        ManufactureYear = 2015
     },
     new Product()
     {
         Name = "Frisbee",
         Price = 8,
         Sold = true,
-        InStock = false
+        InStock = false,
+        StockDate = new DateTime(2021, 11, 15),
+        ManufactureYear = 2000
     },
     new Product()
     {
         Name = "Baseball bat",
         Price = 32,
         Sold = false,
-        InStock = false
+        InStock = false,
+        StockDate = new DateTime(2023, 09, 24),
+        ManufactureYear = 1999
     },
     new Product()
     {
         Name = "Soccer ball",
         Price = 25,
         Sold = false,
-        InStock = true
+        InStock = true,
+        StockDate = new DateTime(2023, 10, 1),
+        ManufactureYear = 2023
     },
     new Product()
     {
         Name = "Cleats",
         Price = 66,
         Sold = false,
-        InStock = true
+        InStock = true,
+        StockDate = new DateTime(2023, 10, 10),
+        ManufactureYear = 2023
     }
 };
 
@@ -92,4 +107,9 @@ Console.WriteLine("Choose a number between 1 and 5!");
 response = int.Parse(Console.ReadLine().Trim());
 }
 Product chosenProduct = products[response -1];
-Console.WriteLine($"You chose: {chosenProduct.Name}, which costs {chosenProduct.Price}. Product stock: {chosenProduct.InStock}");
+DateTime now = DateTime.Now;
+TimeSpan timeInStock = now - chosenProduct.StockDate;
+Console.WriteLine(@$"You chose: 
+{chosenProduct.Name}, which costs {chosenProduct.Price} dollars.
+It is {now.Year - chosenProduct.ManufactureYear} years old. 
+It {(chosenProduct.Sold ? "is not available." : $"has been in stock for {timeInStock.Days} days.")}");
