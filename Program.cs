@@ -114,14 +114,29 @@ foreach (Product product in products)
     }
 }
 Console.WriteLine($"Total inventory value: {totalValue}");
-Console.WriteLine("Please enter a product number: ");
-int response = int.Parse(Console.ReadLine().Trim());
-while (response > products.Count || response < 1)
+// Console.WriteLine("Please enter a product number: ");
+// int response = int.Parse(Console.ReadLine().Trim());
+// while (response > products.Count || response < 1)
+// {
+// Console.WriteLine("Choose a number between 1 and 5!");
+// response = int.Parse(Console.ReadLine().Trim());
+// }
+//Product chosenProduct = products[response -1];
+
+Product chosenProduct = null;
+while (chosenProduct == null)
 {
-Console.WriteLine("Choose a number between 1 and 5!");
-response = int.Parse(Console.ReadLine().Trim());
+    Console.WriteLine("Please enter a product number: ");
+    try
+    {
+        int response = int.Parse(Console.ReadLine().Trim());
+        chosenProduct = products[response - 1];
+    }
+    catch
+    {
+        Console.WriteLine("Do better!");
+    }
 }
-Product chosenProduct = products[response -1];
 DateTime now = DateTime.Now;
 TimeSpan timeInStock = now - chosenProduct.StockDate;
 Console.WriteLine(@$"You chose: 
