@@ -132,8 +132,17 @@ while (chosenProduct == null)
         int response = int.Parse(Console.ReadLine().Trim());
         chosenProduct = products[response - 1];
     }
-    catch
+    catch (FormatException)
     {
+        Console.WriteLine("Please type only integers!");
+    }
+    catch (ArgumentOutOfRangeException)
+    {
+        Console.WriteLine("Please choose an existing item only!");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
         Console.WriteLine("Do better!");
     }
 }
